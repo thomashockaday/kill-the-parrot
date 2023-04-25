@@ -9,6 +9,10 @@ class Parrot {
     this.height = 100;
   }
 
+  update() {
+    this.position.x++;
+  }
+
   draw(ctx) {
     ctx.fillStyle = "red";
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
@@ -26,14 +30,12 @@ const parrot = new Parrot(canvas);
 function animate() {
   requestAnimationFrame(animate);
 
+  parrot.update();
+
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   parrot.draw(ctx);
-
-  parrot.position.x++;
 }
 
-window.addEventListener("load", () => {
-  requestAnimationFrame(animate);
-});
+window.addEventListener("load", animate);
