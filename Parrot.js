@@ -1,9 +1,6 @@
 class Parrot {
-  constructor(canvas) {
-    this.position = {
-      x: canvas.width / 2,
-      y: canvas.height / 2,
-    };
+  constructor({ position }) {
+    this.position = position;
     this.width = 100;
     this.height = 100;
   }
