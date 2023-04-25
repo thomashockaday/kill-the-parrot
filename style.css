@@ -9,6 +9,10 @@ body {
   height: 100%;
 }
 
+body {
+  background-color: #dcdde1;
+}
+
 canvas {
   display: block;
 }
