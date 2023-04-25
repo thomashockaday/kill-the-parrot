@@ -13,6 +13,18 @@ class Sprite {
     this.image.src = imageSrc;
   }
 
+  update() {
+    this.frames.elapsed++;
+
+    if (this.frames.elapsed % this.frames.hold === 0) {
+      this.frames.current++;
+    }
+
+    if (this.frames.current > this.frames.max) {
+      this.frames.current = 0;
+    }
+  }
+
   draw(ctx) {
     const cropWidth = this.image.width / this.frames.max;
 
@@ -36,15 +48,5 @@ class Sprite {
       crop.width,
       crop.height
     );
-
-    this.frames.elapsed++;
-
-    if (this.frames.elapsed % this.frames.hold === 0) {
-      this.frames.current++;
-    }
-
-    if (this.frames.current > this.frames.max) {
-      this.frames.current = 0;
-    }
   }
 }

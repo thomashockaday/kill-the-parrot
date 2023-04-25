@@ -7,6 +7,8 @@ class Parrot extends Sprite {
   }
 
   update() {
+    super.update();
+
     this.position.x++;
   }
 }
