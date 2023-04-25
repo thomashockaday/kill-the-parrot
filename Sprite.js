@@ -5,6 +5,8 @@ class Sprite {
     this.frames = {
       max: frames.max,
       current: 0,
+      elapsed: 0,
+      hold: 3,
     };
 
     this.image = new Image();
@@ -34,5 +36,15 @@ class Sprite {
       crop.width,
       crop.height
     );
+
+    this.frames.elapsed++;
+
+    if (this.frames.elapsed % this.frames.hold === 0) {
+      this.frames.current++;
+    }
+
+    if (this.frames.current > this.frames.max) {
+      this.frames.current = 0;
+    }
   }
 }
