@@ -1,6 +1,7 @@
 class Parrot extends Sprite {
   constructor({ position }) {
-    super({ position });
+    super({ position, imageSrc: "parrot.png", frames: { max: 10 } });
+
     this.width = 100;
     this.height = 100;
   }
