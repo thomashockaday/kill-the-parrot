@@ -43,6 +43,7 @@ function animate() {
 
       parrots.splice(i, 1);
       game.score++;
+      cursor.shooting = false;
     }
   }
 
