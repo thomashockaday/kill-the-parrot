@@ -12,6 +12,10 @@ function animate() {
 
   for (let i = 0; i < parrots.length; i++) {
     parrots[i].update();
+
+    if (parrots[i].position.x + parrots[i].width > canvas.width) {
+      parrots.splice(i, 1);
+    }
   }
 
   ctx.fillStyle = "white";
