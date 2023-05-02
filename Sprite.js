@@ -20,7 +20,7 @@ class Sprite {
       this.frames.current++;
     }
 
-    if (this.frames.current > this.frames.max) {
+    if (this.frames.current >= this.frames.max) {
       this.frames.current = 0;
     }
   }
