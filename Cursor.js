@@ -1,9 +1,25 @@
 class Cursor {
   constructor({ position }) {
     this.position = position;
+
+    this.shooting = false;
+    this.shootCooldown = 5;
+  }
+
+  update() {
+    if (this.shooting) {
+      this.shootCooldown--;
+    }
+
+    if (this.shootCooldown === 0) {
+      this.shootCooldown = 10;
+      this.shooting = false;
+    }
   }
 
   draw(ctx) {
+    ctx.strokeStyle = this.shooting ? "red" : "black";
+
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(this.position.x, this.position.y, 20, 0, 2 * Math.PI);

@@ -18,6 +18,8 @@ function animate() {
     }
   }
 
+  cursor.update();
+
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -32,4 +34,8 @@ window.addEventListener("load", animate);
 canvas.addEventListener("mousemove", (e) => {
   cursor.position.x = e.layerX;
   cursor.position.y = e.layerY;
+});
+
+canvas.addEventListener("mousedown", () => {
+  cursor.shooting = true;
 });
