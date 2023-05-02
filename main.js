@@ -5,17 +5,21 @@ canvas.width = 800;
 canvas.height = 450;
 
 const cursor = new Cursor({ position: { x: 0, y: 0 } });
-const parrot = new Parrot({ position: { x: 10, y: 10 } });
+const parrots = [new Parrot({ position: { x: 10, y: 10 } })];
 
 function animate() {
   requestAnimationFrame(animate);
 
-  parrot.update();
+  for (let i = 0; i < parrots.length; i++) {
+    parrots[i].update();
+  }
 
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  parrot.draw(ctx);
+  parrots.forEach((parrot) => {
+    parrot.draw(ctx);
+  });
   cursor.draw(ctx);
 }
 
