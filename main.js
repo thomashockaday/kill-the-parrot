@@ -8,6 +8,7 @@ const cursor = new Cursor({ position: { x: 0, y: 0 } });
 const parrots = [
   new Parrot({ position: { x: 10, y: 10 }, size: 150, speed: 4 }),
 ];
+const splatters = [];
 
 function animate() {
   requestAnimationFrame(animate);
@@ -23,7 +24,30 @@ function animate() {
     }
 
     if (cursor.shooting && collisionRectRect(cursor, parrots[i].hitbox)) {
+      const size = randomIntBetween(100, 320);
+
+      splatters.push(
+        new Splatter({
+          position: {
+            x: cursor.position.x - size / 2,
+            y: cursor.position.y - size / 2,
+          },
+          size,
+        })
+      );
+
       parrots.splice(i, 1);
+    }
+  }
+
+  for (let i = 0; i < splatters.length; i++) {
+    splatters[i].update();
+
+    if (
+      splatters[i].frames.current === 0 &&
+      splatters[i].frames.elapsed > splatters[i].frames.hold
+    ) {
+      splatters.splice(i, 1);
     }
   }
 
@@ -55,6 +79,11 @@ function animate() {
   parrots.forEach((parrot) => {
     parrot.draw(ctx);
   });
+
+  splatters.forEach((splatter) => {
+    splatter.draw(ctx);
+  });
+
   cursor.draw(ctx);
 }
 
