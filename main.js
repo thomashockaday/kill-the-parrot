@@ -11,6 +11,7 @@ const splatters = [];
 const game = {
   score: 0,
   level: 1,
+  lives: 20,
 };
 
 function animate() {
@@ -23,6 +24,7 @@ function animate() {
       parrots[i].position.x > canvas.width ||
       parrots[i].position.x + parrots[i].width < 0
     ) {
+      game.lives--;
       parrots.splice(i, 1);
     }
 
@@ -81,6 +83,11 @@ function animate() {
     game.level++;
   }
 
+  if (game.lives <= 0) {
+    game.lives = 0;
+    canvas.removeEventListener("mousedown", handleMousedown);
+  }
+
   ctx.fillStyle = "#f5f6fa";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -97,24 +104,20 @@ function animate() {
   ctx.textBaseline = "top";
   ctx.textAlign = "right";
   ctx.fillText(
-    `Level: ${game.level}   Score: ${game.score}`,
+    `Level: ${game.level}   Score: ${game.score}   Lives: ${game.lives}`,
     canvas.width - 10,
     10
   );
 
-  cursor.draw(ctx);
+  if (game.lives > 0) {
+    cursor.draw(ctx);
+  } else {
+    ctx.font = "64px Titan One";
+    ctx.textBaseline = "middle";
+    ctx.textAlign = "center";
+    ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
+  }
 }
-
-window.addEventListener("load", animate);
-
-canvas.addEventListener("mousemove", (e) => {
-  cursor.position.x = e.layerX;
-  cursor.position.y = e.layerY;
-});
-
-canvas.addEventListener("mousedown", () => {
-  cursor.shooting = true;
-});
 
 function collisionRectRect(rect1, rect2) {
   return (
@@ -128,3 +131,16 @@ function collisionRectRect(rect1, rect2) {
 function randomIntBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+function handleMousedown() {
+  cursor.shooting = true;
+}
+
+window.addEventListener("load", animate);
+
+canvas.addEventListener("mousemove", (e) => {
+  cursor.position.x = e.layerX;
+  cursor.position.y = e.layerY;
+});
+
+canvas.addEventListener("mousedown", handleMousedown);
