@@ -2,8 +2,10 @@ class Cursor {
   constructor({ position }) {
     this.position = position;
 
+    this.width = 1;
+    this.height = 1;
     this.shooting = false;
-    this.shootCooldown = 5;
+    this.shootCooldown = 4;
   }
 
   update() {
@@ -19,8 +21,8 @@ class Cursor {
 
   draw(ctx) {
     ctx.strokeStyle = this.shooting ? "red" : "black";
+    ctx.lineWidth = this.shooting ? 3 : 2;
 
-    ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(this.position.x, this.position.y, 20, 0, 2 * Math.PI);
     ctx.moveTo(this.position.x + 40, this.position.y);

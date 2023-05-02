@@ -13,6 +13,10 @@ function animate() {
   for (let i = 0; i < parrots.length; i++) {
     parrots[i].update();
 
+    if (cursor.shooting && collisionRectRect(cursor, parrots[i])) {
+      parrots.splice(i, 1);
+    }
+
     if (parrots[i].position.x > canvas.width) {
       parrots.splice(i, 1);
     }
@@ -39,3 +43,12 @@ canvas.addEventListener("mousemove", (e) => {
 canvas.addEventListener("mousedown", () => {
   cursor.shooting = true;
 });
+
+function collisionRectRect(rect1, rect2) {
+  return (
+    rect1.position.x >= rect2.position.x &&
+    rect1.position.x + rect1.width <= rect2.position.x + rect2.width &&
+    rect1.position.y >= rect2.position.y &&
+    rect1.position.y + rect1.height <= rect2.position.y + rect2.height
+  );
+}
