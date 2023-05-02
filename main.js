@@ -13,7 +13,7 @@ function animate() {
   for (let i = 0; i < parrots.length; i++) {
     parrots[i].update();
 
-    if (parrots[i].position.x + parrots[i].width > canvas.width) {
+    if (parrots[i].position.x > canvas.width) {
       parrots.splice(i, 1);
     }
   }

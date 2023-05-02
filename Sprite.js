@@ -11,6 +11,9 @@ class Sprite {
 
     this.image = new Image();
     this.image.src = imageSrc;
+
+    this.width = 0;
+    this.height = 0;
   }
 
   update() {
@@ -45,8 +48,8 @@ class Sprite {
       crop.height,
       this.position.x,
       this.position.y,
-      crop.width,
-      crop.height
+      this.width,
+      this.height
     );
   }
 }
