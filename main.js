@@ -105,7 +105,7 @@ function animate() {
   });
 
   ctx.fillStyle = "black";
-  ctx.font = "24px Titan One";
+  ctx.font = `${canvas.width / 30}px Titan One`;
   ctx.textBaseline = "top";
   ctx.textAlign = "right";
   ctx.fillText(
@@ -117,7 +117,7 @@ function animate() {
   if (game.lives > 0) {
     cursor.draw(ctx);
   } else {
-    ctx.font = "64px Titan One";
+    ctx.font = `${canvas.width / 10}px Titan One`;
     ctx.textBaseline = "middle";
     ctx.textAlign = "center";
     ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
