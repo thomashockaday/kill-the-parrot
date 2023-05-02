@@ -76,7 +76,7 @@ body {
 h1 {
   display: inline;
   font-family: "Titan One";
-  font-size: clamp(1.5rem, -4.125rem + 18vw, 6rem);
+  font-size: clamp(1.5rem, -4.125rem + 17vw, 6rem);
   background: #fc8b8a;
   background: -webkit-linear-gradient(
     to right,
@@ -132,21 +132,24 @@ canvas {
   margin: auto;
 }
 
-.screen-warning {
-  display: none;
-  padding: 1rem;
-}
-
 .container {
   padding: 5% 10%;
 }
 
-@media only screen and (max-width: 1000px) {
-  canvas {
+@media only screen and (max-width: 900px) {
+  .container {
+    padding: 0;
+  }
+
+  h1,
+  p {
     display: none;
   }
 
-  .screen-warning {
-    display: block;
+  canvas {
+    border: none;
+    margin: 0;
+    box-shadow: none;
+    top: 0;
   }
 }

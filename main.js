@@ -73,7 +73,10 @@ function animate() {
 
     parrots.push(
       new Parrot({
-        position: { x: startX, y: randomIntBetween(1, 360) },
+        position: {
+          x: startX,
+          y: randomIntBetween(1, canvas.height - size / 3),
+        },
         size,
         speed,
       })
@@ -87,6 +90,7 @@ function animate() {
   if (game.lives <= 0) {
     game.lives = 0;
     canvas.removeEventListener("mousedown", handleMousedown);
+    canvas.removeEventListener("touchstart", handleMousedown);
   }
 
   ctx.fillStyle = "#f5f6fa";
@@ -137,7 +141,20 @@ function handleMousedown() {
   cursor.shooting = true;
 }
 
-window.addEventListener("load", animate);
+function scaleCanvas() {
+  if (window.innerWidth <= 900) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  } else {
+    canvas.width = 800;
+    canvas.height = 450;
+  }
+}
+
+window.addEventListener("load", () => {
+  scaleCanvas();
+  animate();
+});
 
 canvas.addEventListener("mousemove", (e) => {
   cursor.position.x = e.layerX;
@@ -145,3 +162,6 @@ canvas.addEventListener("mousemove", (e) => {
 });
 
 canvas.addEventListener("mousedown", handleMousedown);
+canvas.addEventListener("touchstart", handleMousedown);
+
+window.addEventListener("resize", scaleCanvas);
