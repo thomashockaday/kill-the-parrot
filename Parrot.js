@@ -1,9 +1,10 @@
 class Parrot extends Sprite {
-  constructor({ position }) {
+  constructor({ position, size, speed }) {
     super({ position, imageSrc: "parrot.png", frames: { max: 10 } });
 
-    this.width = 200;
-    this.height = 200;
+    this.width = size;
+    this.height = size;
+    this.speed = speed;
 
     this.hitbox = {
       position: {
@@ -18,7 +19,7 @@ class Parrot extends Sprite {
   update() {
     super.update();
 
-    this.position.x++;
-    this.hitbox.position.x++;
+    this.position.x += this.speed;
+    this.hitbox.position.x += this.speed;
   }
 }
