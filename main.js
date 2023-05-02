@@ -10,6 +10,7 @@ const splatters = [];
 
 const game = {
   score: 0,
+  level: 1,
 };
 
 function animate() {
@@ -56,7 +57,7 @@ function animate() {
 
   cursor.update();
 
-  if (parrots.length === 0) {
+  if (parrots.length <= game.level - 1) {
     let speed = randomIntBetween(2, 8);
     const size = randomIntBetween(100, 250);
     let startX = -size + 1;
@@ -76,6 +77,10 @@ function animate() {
     );
   }
 
+  if (game.score >= game.level * 10) {
+    game.level++;
+  }
+
   ctx.fillStyle = "#f5f6fa";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -91,7 +96,11 @@ function animate() {
   ctx.font = "24px Titan One";
   ctx.textBaseline = "top";
   ctx.textAlign = "right";
-  ctx.fillText(`Score: ${game.score}`, canvas.width - 10, 10);
+  ctx.fillText(
+    `Level: ${game.level}   Score: ${game.score}`,
+    canvas.width - 10,
+    10
+  );
 
   cursor.draw(ctx);
 }
