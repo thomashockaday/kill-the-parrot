@@ -8,6 +8,10 @@ const cursor = new Cursor({ position: { x: 0, y: 0 } });
 const parrots = [];
 const splatters = [];
 
+const game = {
+  score: 0,
+};
+
 function animate() {
   requestAnimationFrame(animate);
 
@@ -35,6 +39,7 @@ function animate() {
       );
 
       parrots.splice(i, 1);
+      game.score++;
     }
   }
 
@@ -81,6 +86,12 @@ function animate() {
   splatters.forEach((splatter) => {
     splatter.draw(ctx);
   });
+
+  ctx.fillStyle = "black";
+  ctx.font = "24px Titan One";
+  ctx.textBaseline = "top";
+  ctx.textAlign = "right";
+  ctx.fillText(`Score: ${game.score}`, canvas.width - 10, 10);
 
   cursor.draw(ctx);
 }
