@@ -1,6 +1,6 @@
 class Parrot extends Sprite {
   constructor({ position, size, speed }) {
-    const imageSrc = speed < 0 ? "parrot-left.png" : "parrot-right.png";
+    const imageSrc = `sprites/parrot-${speed < 0 ? "left" : "right"}.png`;
     super({ position, imageSrc, frames: { max: 10 } });
 
     this.width = size;
