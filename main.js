@@ -13,11 +13,11 @@ function animate() {
   for (let i = 0; i < parrots.length; i++) {
     parrots[i].update();
 
-    if (cursor.shooting && collisionRectRect(cursor, parrots[i])) {
+    if (parrots[i].position.x > canvas.width) {
       parrots.splice(i, 1);
     }
 
-    if (parrots[i].position.x > canvas.width) {
+    if (cursor.shooting && collisionRectRect(cursor, parrots[i].hitbox)) {
       parrots.splice(i, 1);
     }
   }
