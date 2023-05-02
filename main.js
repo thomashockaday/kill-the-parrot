@@ -5,9 +5,7 @@ canvas.width = 800;
 canvas.height = 450;
 
 const cursor = new Cursor({ position: { x: 0, y: 0 } });
-const parrots = [
-  new Parrot({ position: { x: 10, y: 10 }, size: 150, speed: 4 }),
-];
+const parrots = [];
 const splatters = [];
 
 function animate() {
