@@ -1,9 +1,6 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = 800;
-canvas.height = 450;
-
 const cursor = new Cursor({ position: { x: 0, y: 0 } });
 const parrots = [];
 const splatters = [];
