@@ -20,13 +20,17 @@
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="container">
-      <h1>Kill the Parrot</h1>
-      <p>
-        The party parrots are running out of control. They need to be stopped!
-      </p>
+    <h1>Kill the Parrot</h1>
+    <p>
+      The party parrots are running out of control. They need to be stopped!
+    </p>
 
-      <canvas>Your browser does not support canvas elements.</canvas>
+    <div id="gameContainer">
+      <canvas></canvas>
+
+      <div id="mainMenu" class="ui-panel active">
+        <button id="playBtn">Play</button>
+      </div>
     </div>
 
     <script src="classes/Cursor.js"></script>

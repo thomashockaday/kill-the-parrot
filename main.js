@@ -9,10 +9,17 @@ const game = {
   score: 0,
   level: 1,
   lives: 20,
+  started: false,
 };
 
 function animate() {
   requestAnimationFrame(animate);
+
+  if (game.started === false) {
+    ctx.fillStyle = "#f5f6fa";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    return;
+  }
 
   for (let i = 0; i < parrots.length; i++) {
     parrots[i].update();
@@ -149,6 +156,11 @@ function scaleCanvas() {
 }
 
 window.addEventListener("load", () => {
+  document.getElementById("playBtn")?.addEventListener("click", () => {
+    game.started = true;
+    document.getElementById("mainMenu").style.display = "none";
+  });
+
   scaleCanvas();
   animate();
 });
